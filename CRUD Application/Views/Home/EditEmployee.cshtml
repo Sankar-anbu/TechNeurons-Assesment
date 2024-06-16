@@ -1,0 +1,73 @@
+﻿@model CRUD_Application.Models.EmployeeModel
+
+@{
+    ViewData["Title"] = "Edit Employee";
+}
+
+<h1 class="text-center my-4">Edit Employee</h1>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h4 class="text-center">Employee Information</h4>
+            <hr />
+            <form asp-action="EditEmployee" class="p-4 shadow-sm rounded bg-light">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                <input type="hidden" asp-for="Id" />
+
+                <div class="form-group mb-3">
+                    <label asp-for="Name" class="form-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="PhoneNo" class="form-label"></label>
+                    <input asp-for="PhoneNo" class="form-control form-control-no-spinner" type="number" />
+                    <span asp-validation-for="PhoneNo" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="Description" class="form-label"></label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group d-flex justify-content-center">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+
+                @if (TempData["msg"] != null)
+                {
+                        <div class="mb-3 alert alert-success text-center">
+                        @TempData["msg"]
+                        </div>
+                }
+            </form>
+            <div class="text-center mt-3">
+                <a asp-action="ListEmployee" class="btn btn-info">Show Employee List</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<style>
+  
+    .form-control-no-spinner::-webkit-outer-spin-button,
+    .form-control-no-spinner::-webkit-inner-spin-button {
+        -webkit-appearance: none !important;
+        margin: 0;
+    }
+
+    .form-control-no-spinner {
+        -moz-appearance: textfield !important;
+    }
+</style>
